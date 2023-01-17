@@ -74,13 +74,10 @@ def _get_json_serving_signature(model, tf_transform_output):
   model.tft_layer_inference = tf_transform_output.transform_features_layer()
   schema = tf_transform_output.raw_feature_spec()
   schema.pop(LABEL_COLUMN)
-  print(f"tf_transform_output.raw_feature_spec() {tf_transform_output.raw_feature_spec()}")
 
   feature_tensor_specs = list()
   for k,f in schema.items():
-        print(f"K => {k} f => {f}")
-#         shape=[None,2], 
-# shape=[None], 
+#         print(f"K => {k} f => {f}")
         feature_tensor_specs.append(tf.TensorSpec(shape=None, dtype=f.dtype, name=k))
   print(feature_tensor_specs)
 

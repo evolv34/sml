@@ -84,8 +84,8 @@ def preprocessing_fn(inputs: Dict[Text, Any]) -> Dict[Text, Any]:
     _preprocess_numerical_features(NUMERICAL_FEATURE_KEYS, outputs)
     _preprocess_label_column(outputs)
     
-    print("***********************************************************")
-    for key in outputs.keys():
-        print(f"key => {key} \noutput = {outputs[key]} \ninput = {inputs[key].shape} \n\n\n")
-    print("***********************************************************")
+#     print("***********************************************************")
+#     for key in outputs.keys():
+#         print(f"key => {key} \noutput = {outputs[key]} \ninput = {inputs[key].shape} \n\n\n")
+#     print("***********************************************************")
     return outputs
