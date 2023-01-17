@@ -9,7 +9,7 @@ This is a machine learning pipeline tool that focuses mainly on using `Tensorflo
 ## Architecture
 
 
-!![Alt Image text](/docs/architecture.jpg)
+![Alt Image text](/docs/architecture.jpg)
 
 
 ## Description
