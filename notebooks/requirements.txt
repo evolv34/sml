@@ -1,0 +1,8 @@
+tfx==1.2.0
+boto3==1.17.112
+tensorflow-io
+tensorflow-io[tensorflow]
+apache-beam[interactive]
+presto==0.7.0
+presto-python-client
+markupsafe==2.0.1

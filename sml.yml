@@ -1,0 +1,106 @@
+version: "2.4"
+
+services:
+  storage:
+    image: chanhub/fraud-ieee-data:1.0.0
+    container_name: storage
+    command: server /data/{1...4} --console-address "0.0.0.0:9001"
+    ports:
+      - "9001:9001"
+
+  jupyter:
+    image: jupyter/minimal-notebook:python-3.8.8
+    ports:
+      - "8888:8888"
+      - "4040:4040"
+    user: root
+    working_dir: /home/jupyter
+    volumes:
+      - ./notebooks:/home/jupyter/lab
+      - ./data:/home/jupyter/data    
+    # mem_limit: 10280M
+    environment:
+      JUPYTER_ALLOW_INSECURE_WRITES: 1
+      JUPYTER_ENABLE_LAB: "yes"
+      NB_USER: "jupyter"
+      NB_UID: 1000
+      NB_GID: 1000
+      GRANT_SUDO: "yes"
+      CHOWN_HOME: "yes"
+      CHOWN_EXTRA_OPTS: "-R"
+      S3_ENDPOINT: storage:9000
+      S3_USE_HTTPS: 0
+      S3_VERIFY_SSL: 0
+      AWS_ACCESS_KEY_ID: minioadmin
+      AWS_SECRET_ACCESS_KEY: minioadmin
+
+  jupyter-pyspark:
+    image: jupyter/pyspark-notebook:lab-3.3.4
+    ports:
+      - "8889:8888"
+      - "4041:4040"
+    user: root
+    working_dir: /home/jupyter
+    volumes:
+      - ./notebooks:/home/jupyter/lab
+      - ./data:/home/jupyter/data    
+    environment:
+      JUPYTER_ALLOW_INSECURE_WRITES: 1
+      JUPYTER_ENABLE_LAB: "yes"
+      NB_USER: "jupyter"
+      NB_UID: 1000
+      NB_GID: 1000
+      GRANT_SUDO: "yes"
+      CHOWN_HOME: "yes"
+      CHOWN_EXTRA_OPTS: "-R"
+      S3_ENDPOINT: storage:9000
+      S3_USE_HTTPS: 0
+      S3_VERIFY_SSL: 0
+      AWS_ACCESS_KEY_ID: minioadmin
+      AWS_SECRET_ACCESS_KEY: minioadmin
+
+  model-serving:
+    image: tensorflow/serving:2.5.4
+    hostname: model_server
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./model_output/fraud-model:/models/fraud-model
+    environment:
+      MODEL_NAME: fraud-model
+
+  trino-coordinator:
+    image: 'trinodb/trino:386'
+    hostname: trino-coordinator
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./coordinator-etc:/etc/trino
+
+  trino-worker:
+    image: 'trinodb/trino:386'
+    volumes:
+      - ./worker-etc:/etc/trino
+
+  hive-metastore:
+    image: chanhub/hive-metastore:1.0.0
+    hostname: hive-metastore
+    ports:
+      - '9083:9083' # Metastore Thrift
+    volumes:
+      - ./conf/metastore-site.xml:/opt/apache-hive-metastore-3.0.0-bin/conf/metastore-site.xml:ro
+    environment:
+      METASTORE_DB_HOSTNAME: postgres
+      METASTORE_TYPE: postgres
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:14.3
+    hostname: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: hive_db
