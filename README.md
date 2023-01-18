@@ -36,6 +36,8 @@ The stack is deployed using docker and docker-compose. `docker` and `docker-comp
 
 This pipeline used [IEEE-CIS Fraud Detection](https://www.kaggle.com/competitions/ieee-fraud-detection/overview) data from kaggle. And in the first iteration it was able to achive considerable ok score. 
 
+* features were selected based on backward elemination technique. 
+
 ![Alt Image text](/docs/kaggle_scoring.png)
 
 ## Note:
