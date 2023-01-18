@@ -31,4 +31,8 @@ The stack is deployed using docker and docker-compose. `docker` and `docker-comp
 ```bash
   docker-compose -f sml.yml up -d
 ```
+
+## Note:
+
+Model improvement is beyond the scope of this repository.
     
