@@ -18,7 +18,7 @@ Notebook files are stored in `/notebooks` folder
 
 | File | Description |
 | :----| :-----------|
-| [IEEE-CIS-Fraud-Detection-preprocessor.ipynb](notebooks/IEEE-CIS-Fraud-Detection-preprocessor.ipynb)| pyspark preprocessor notebook |
+| `[IEEE-CIS-Fraud-Detection-preprocessor.ipynb](notebooks/IEEE-CIS-Fraud-Detection-preprocessor.ipynb)`| pyspark preprocessor notebook |
 |`IEEE-CIS-Fraud-Detection-Train-TF.ipynb`| Tensorflow extended model training and publishing code. |
 |`IEEE-CIS-Fraud-Detection-Score-Spark.ipynb` | pyspark score notebook. |
 
