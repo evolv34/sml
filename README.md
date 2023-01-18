@@ -1,7 +1,7 @@
 
 # SML - Simple Machine learning
 
-This is a machine learning pipeline tool which focuses mainly on using `Tensorflow Extended` library to train machine learning model using data from various data storage.
+This machine learning pipeline tool focuses mainly on using `Tensorflow Extended` library to train machine learning model using data from various data storage.
 
 
 
