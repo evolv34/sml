@@ -32,6 +32,12 @@ The stack is deployed using docker and docker-compose. `docker` and `docker-comp
   docker-compose -f sml.yml up -d
 ```
 
+## Test Scenario
+
+This pipeline used [IEEE-CIS Fraud Detection](https://www.kaggle.com/competitions/ieee-fraud-detection/overview) data from kaggle. And in the first iteration it was able to achive considerable ok score. 
+
+![Alt Image text](/docs/kaggle_scoring.png)
+
 ## Note:
 
 Model improvement is beyond the scope of this repository.
