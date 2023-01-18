@@ -1,7 +1,7 @@
 
-# SMLT - Simple Machine learning tool.
+# SML - Simple Machine learning
 
-This is a machine learning pipeline tool that focuses mainly on using `Tensorflow Extended` library to train machine learning model using data from various data storage.
+This is a machine learning pipeline tool which focuses mainly on using `Tensorflow Extended` library to train machine learning model using data from various data storage.
 
 
 
